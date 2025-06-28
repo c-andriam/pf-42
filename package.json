@@ -4,10 +4,11 @@
   "description": "Portfolio professionnel de c-andriam - Étudiant à l'école 42 Antananarivo",
   "main": "public/index.html",
   "scripts": {
-    "dev": "npx http-server public -p 3000",
+    "dev": "npx http-server public -p 3000 -o",
     "build": "echo 'Static site - no build needed'",
     "start": "npx http-server public -p 8080",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "preview": "vercel"
   },
   "keywords": [
     "portfolio",
@@ -15,9 +16,10 @@
     "developer",
     "system",
     "c-programming",
-    "web"
+    "web",
+    "c-andriam"
   ],
-  "author": "c-andriam",
+  "author": "c-andriam <c-andriam@student.42antananarivo.mg>",
   "license": "MIT",
   "devDependencies": {
     "http-server": "^14.1.1"
@@ -26,5 +28,8 @@
     "type": "git",
     "url": "https://github.com/c-andriam/portfolio-42.git"
   },
-  "homepage": "https://c-andriam-portfolio.vercel.app"
+  "homepage": "https://c-andriam-portfolio.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }

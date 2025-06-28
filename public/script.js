@@ -296,6 +296,31 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
+// Gestion de l'image animée
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedQuote = document.querySelector('.animated-quote');
+    
+    if (animatedQuote) {
+        // Ajouter un indicateur de chargement
+        animatedQuote.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        // Gérer les erreurs de chargement
+        animatedQuote.addEventListener('error', function() {
+            const fallbackQuote = this.nextElementSibling;
+            if (fallbackQuote && fallbackQuote.classList.contains('fallback-quote')) {
+                this.style.display = 'none';
+                fallbackQuote.style.display = 'block';
+            }
+        });
+        
+        // Style initial
+        animatedQuote.style.opacity = '0';
+        animatedQuote.style.transition = 'opacity 0.3s ease';
+    }
+});
+
 // Lazy loading for images
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -313,6 +338,8 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
+
 
 // Console easter egg
 console.log(`

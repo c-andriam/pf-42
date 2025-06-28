@@ -1,18 +1,27 @@
 {
   "name": "portfolio-42-c-andriam",
   "version": "1.0.0",
-  "description": "Portfolio professionnel - École 42 Antananarivo",
+  "description": "Portfolio professionnel de c-andriam - Développeur système formé à l'École 42",
   "main": "index.html",
   "scripts": {
-    "dev": "python -m http.server 3000",
+    "dev": "python -m http.server 8000",
     "build": "echo 'Static site - no build required'",
-    "start": "python -m http.server 8000"
+    "deploy": "vercel --prod"
   },
-  "keywords": ["portfolio", "42school", "developer", "antananarivo"],
+  "keywords": [
+    "portfolio",
+    "42",
+    "developer",
+    "system",
+    "c-programming",
+    "unix",
+    "shell"
+  ],
   "author": "c-andriam",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/c-andriam/portfolio-42.git"
-  }
+    "url": "https://github.com/c-andriam/portfolio-42"
+  },
+  "homepage": "https://c-andriam.vercel.app"
 }

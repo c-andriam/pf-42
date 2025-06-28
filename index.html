@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de c-andriam - Étudiant développeur à l'École 42 Antananarivo, spécialisé en programmation système et logicielle.">
-    <meta name="keywords" content="42school, développeur, programmation, C, Unix, Shell, portfolio, Antananarivo">
+    <title>c-andriam - Portfolio | Développeur Système | École 42</title>
+    <meta name="description" content="Portfolio de c-andriam, développeur système et logiciel formé à l'École 42 Antananarivo - Milestone 5">
+    <meta name="keywords" content="42, développeur, système, C, Unix, Shell, Git, portfolio, c-andriam">
     <meta name="author" content="c-andriam">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Portfolio - c-andriam | École 42">
-    <meta property="og:description" content="Étudiant développeur à l'École 42 Antananarivo - Milestone 5">
+    <!-- Open Graph -->
+    <meta property="og:title" content="c-andriam - Portfolio | Développeur Système | École 42">
+    <meta property="og:description" content="Portfolio de c-andriam, développeur système et logiciel formé à l'École 42">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-domain.vercel.app">
     
-    <title>c-andriam | Portfolio - École 42</title>
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/github-theme.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
     
-    <!-- Font Awesome for icons -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="dark-theme">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">c-andriam</a>
+                <i class="fab fa-github"></i>
+                <span>c-andriam</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Accueil</a></li>
@@ -37,45 +40,52 @@
                 <li><a href="#education" class="nav-link">Parcours</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li>
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-sun"></i>
                     </button>
                 </li>
             </ul>
             <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Section Accueil -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Bonjour, je suis <span class="highlight">c-andriam</span></h1>
-                    <h2>Étudiant Développeur à l'École 42</h2>
+                    <h1>Salut, je suis <span class="highlight">c-andriam</span></h1>
+                    <p class="hero-subtitle">
+                        <span class="typing-text">Développeur Système</span>
+                        <span class="cursor">|</span>
+                    </p>
                     <p class="hero-description">
-                        Passionné par la programmation système et le développement logiciel, 
-                        actuellement au milestone 5 à l'École 42 Antananarivo.
+                        Étudiant passionné à l'École 42 Antananarivo, actuellement au milestone 5. 
+                        Spécialisé dans le développement système et la programmation en C.
                     </p>
                     <blockquote class="hero-quote">
                         <i class="fas fa-quote-left"></i>
-                        "Code is poetry written in logic"
+                        "Le code, c'est de la poésie que les machines peuvent lire."
                         <i class="fas fa-quote-right"></i>
                     </blockquote>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-                        <a href="#contact" class="btn btn-secondary">Me contacter</a>
+                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                        <a href="https://github.com/c-andriam" target="_blank" class="btn btn-icon" data-tooltip="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="profile-card">
-                        <img src="assets/images/profile.jpg" alt="c-andriam" class="profile-img">
-                        <div class="status-badge">
-                            <i class="fas fa-circle"></i> Milestone 5
+                        <img src="assets/profile.jpg" alt="c-andriam" class="profile-img">
+                        <div class="status-indicator">
+                            <span class="status-dot"></span>
+                            Disponible pour opportunités
                         </div>
                     </div>
                 </div>
@@ -83,303 +93,413 @@
         </div>
     </section>
 
-    <!-- Section Compétences -->
+    <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-code"></i>
-                Compétences Techniques
-            </h2>
+            <h2 class="section-title">Compétences Techniques</h2>
+            <p class="section-subtitle">Technologies maîtrisées jusqu'au milestone 5 de l'École 42</p>
+            
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3><i class="fas fa-terminal"></i> Systèmes & Shell</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Unix/Linux</span>
-                        <span class="skill-tag">Bash/Shell</span>
-                        <span class="skill-tag">System Calls</span>
-                        <span class="skill-tag">Process Management</span>
+                    <div class="category-header">
+                        <i class="fas fa-terminal"></i>
+                        <h3>Systèmes & Shell</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">Unix/Linux</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Bash Scripting</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Git & GitHub</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="88%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
-                    <h3><i class="fab fa-github"></i> Outils de Développement</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Makefile</span>
-                        <span class="skill-tag">GDB/Valgrind</span>
-                        <span class="skill-tag">Norminette</span>
+                    <div class="category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programmation</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">C</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Makefile</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Gestion Mémoire</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Programmation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">Data Structures</span>
-                        <span class="skill-tag">Algorithms</span>
-                        <span class="skill-tag">Memory Management</span>
+                    <div class="category-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Outils & Debug</h3>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <span class="skill-name">GDB</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Valgrind</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Vim/Emacs</span>
+                            <div class="skill-bar">
+                                <div class="progress-fill" data-width="82%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-puzzle-piece"></i> Projets 42</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Libft</span>
-                        <span class="skill-tag">Get Next Line</span>
-                        <span class="skill-tag">Printf</span>
-                        <span class="skill-tag">Push Swap</span>
-                        <span class="skill-tag">Pipex</span>
+            </div>
+
+            <div class="achievements">
+                <h3>Projets 42 Complétés</h3>
+                <div class="achievement-badges">
+                    <div class="badge" data-tooltip="Bibliothèque C personnalisée">
+                        <i class="fas fa-book"></i>
+                        <span>libft</span>
+                    </div>
+                    <div class="badge" data-tooltip="Lecture ligne par ligne">
+                        <i class="fas fa-file-alt"></i>
+                        <span>get_next_line</span>
+                    </div>
+                    <div class="badge" data-tooltip="Fonction printf personnalisée">
+                        <i class="fas fa-print"></i>
+                        <span>ft_printf</span>
+                    </div>
+                    <div class="badge" data-tooltip="Algorithme de tri">
+                        <i class="fas fa-sort"></i>
+                        <span>push_swap</span>
+                    </div>
+                    <div class="badge" data-tooltip="En cours">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span>minitalk</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Projets -->
+    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-folder-open"></i>
-                Projets École 42
-            </h2>
+            <h2 class="section-title">Mes Projets 42</h2>
+            <p class="section-subtitle">Une sélection de mes réalisations techniques</p>
+            
             <div class="projects-grid">
-                
                 <div class="project-card">
-                    <div class="project-header">
-                        <h3>libft</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-success">✓ 125/100</span>
-                            <span class="badge badge-tech">C</span>
+                    <div class="project-image">
+                        <img src="assets/projects/libft.png" alt="libft" data-src="assets/projects/libft.png">
+                        <div class="project-overlay">
+                            <a href="https://github.com/c-andriam/libft" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <p class="project-description">
-                        Recréation de fonctions de la libc standard. Gestion mémoire, manipulation de chaînes, listes chaînées.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">malloc</span>
-                        <span class="tag">linked-lists</span>
-                        <span class="tag">string-manipulation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/c-andriam/libft" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i> Code
-                        </a>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>libft</h3>
+                            <div class="project-status completed">
+                                <i class="fas fa-check-circle"></i>
+                                Terminé
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Ma première bibliothèque C personnalisée recréant les fonctions standard de la libc. 
+                            Implémentation de fonctions de manipulation de chaînes, mémoire et listes chaînées.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">Makefile</span>
+                            <span class="tech-tag">Memory Management</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-star"></i> Score: 125/100</span>
+                            <span><i class="fas fa-code"></i> 2000+ lignes</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-header">
-                        <h3>get_next_line</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-success">✓ 125/100</span>
-                            <span class="badge badge-tech">C</span>
+                    <div class="project-image">
+                        <img src="assets/projects/gnl.png" alt="get_next_line" data-src="assets/projects/gnl.png">
+                        <div class="project-overlay">
+                            <a href="https://github.com/c-andriam/get_next_line" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <p class="project-description">
-                        Fonction qui lit un fichier ligne par ligne. Gestion des file descriptors et de la mémoire statique.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">file-handling</span>
-                        <span class="tag">static-variables</span>
-                        <span class="tag">memory-management</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/c-andriam/get_next_line" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i> Code
-                        </a>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>get_next_line</h3>
+                            <div class="project-status completed">
+                                <i class="fas fa-check-circle"></i>
+                                Terminé
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Fonction de lecture ligne par ligne depuis un file descriptor. 
+                            Gestion efficace de la mémoire et des buffers pour la lecture de fichiers de toute taille.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">File I/O</span>
+                            <span class="tech-tag">Static Variables</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-star"></i> Score: 115/100</span>
+                            <span><i class="fas fa-file"></i> Bonus inclus</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-header">
-                        <h3>ft_printf</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-success">✓ 100/100</span>
-                            <span class="badge badge-tech">C</span>
+                    <div class="project-image">
+                        <img src="assets/projects/printf.png" alt="ft_printf" data-src="assets/projects/printf.png">
+                        <div class="project-overlay">
+                            <a href="https://github.com/c-andriam/ft_printf" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <p class="project-description">
-                        Recréation de la fonction printf avec gestion des conversions et formatage.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">variadic-functions</span>
-                        <span class="tag">formatting</span>
-                        <span class="tag">parsing</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/c-andriam/ft_printf" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i> Code
-                        </a>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>ft_printf</h3>
+                            <div class="project-status completed">
+                                <i class="fas fa-check-circle"></i>
+                                Terminé
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Recréation de la fonction printf avec gestion des conversions %c, %s, %p, %d, %i, %u, %x, %X, %%. 
+                            Implémentation robuste avec parsing des formats.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">Variadic Functions</span>
+                            <span class="tech-tag">String Parsing</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-star"></i> Score: 100/100</span>
+                            <span><i class="fas fa-bug"></i> Tests rigoureux</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-header">
-                        <h3>push_swap</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-warning">En cours</span>
-                            <span class="badge badge-tech">C</span>
+                    <div class="project-image">
+                        <img src="assets/projects/push_swap.png" alt="push_swap" data-src="assets/projects/push_swap.png">
+                        <div class="project-overlay">
+                            <a href="https://github.com/c-andriam/push_swap" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
-                    <p class="project-description">
-                        Algorithme de tri avec deux piles et un set d'instructions limité. Optimisation du nombre d'opérations.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">algorithms</span>
-                        <span class="tag">sorting</span>
-                        <span class="tag">optimization</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/c-andriam/push_swap" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i> Code
-                        </a>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>push_swap</h3>
+                            <div class="project-status in-progress">
+                                <i class="fas fa-clock"></i>
+                                En cours
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Algorithme de tri optimisé utilisant deux stacks et un set d'opérations limitées. 
+                            Défi d'optimisation pour trier avec le minimum d'opérations possible.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">Algorithms</span>
+                            <span class="tech-tag">Data Structures</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-target"></i> Objectif: < 700 moves</span>
+                            <span><i class="fas fa-brain"></i> Algorithme avancé</span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>pipex</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-info">À venir</span>
-                            <span class="badge badge-tech">C</span>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Simulation du comportement des pipes Unix. Gestion des processus et des redirections.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">pipes</span>
-                        <span class="tag">processes</span>
-                        <span class="tag">system-calls</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link disabled">
-                            <i class="fab fa-github"></i> Bientôt
-                        </a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>minishell</h3>
-                        <div class="project-badges">
-                            <span class="badge badge-info">À venir</span>
-                            <span class="badge badge-tech">C</span>
-                        </div>
-                    </div>
-                    <p class="project-description">
-                        Création d'un shell minimaliste avec parsing, builtins et gestion des signaux.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">shell</span>
-                        <span class="tag">parsing</span>
-                        <span class="tag">signals</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link disabled">
-                            <i class="fab fa-github"></i> Bientôt
-                        </a>
-                    </div>
-                </div>
+            <div class="projects-footer">
+                <p>Plus de projets disponibles sur mon <a href="https://github.com/c-andriam" target="_blank">GitHub</a></p>
             </div>
         </div>
     </section>
 
-    <!-- Section Parcours -->
+    <!-- Education Section -->
     <section id="education" class="education">
         <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-graduation-cap"></i>
-                Parcours Scolaire
-            </h2>
-            <div class="education-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
+            <h2 class="section-title">Parcours Scolaire</h2>
+            
+            <div class="education-content">
+                <div class="school-info">
+                    <div class="school-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="school-details">
                         <h3>École 42 Antananarivo</h3>
-                        <p class="timeline-date">2023 - En cours</p>
-                        <p class="timeline-description">
-                            Formation en développement informatique - Méthode pédagogique par projets et peer-learning.
-                            <br><strong>Niveau actuel :</strong> Milestone 5
+                        <p class="school-period">2023 - En cours</p>
+                        <p class="school-description">
+                            Formation intensive en programmation système et développement logiciel. 
+                            Pédagogie par projet, peer-to-peer learning et gamification.
                         </p>
-                        <div class="timeline-skills">
-                            <span class="skill-badge">Programmation en C</span>
-                            <span class="skill-badge">Unix/Linux</span>
-                            <span class="skill-badge">Algorithmes</span>
-                            <span class="skill-badge">Git</span>
+                        <div class="school-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-trophy"></i>
+                                <span>Milestone 5 atteint</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-users"></i>
+                                <span>Peer evaluation</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Formation 24/7</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Milestone</div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Piscine 42</h4>
+                            <span class="timeline-date">2023</span>
+                            <p>4 semaines intensives d'apprentissage du C et des bases Unix/Shell.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Cursus Common Core</h4>
+                            <span class="timeline-date">2023-2024</span>
+                            <p>libft, get_next_line, ft_printf - Fondamentaux de la programmation système.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item active">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h4>Milestone 5</h4>
+                            <span class="timeline-date">2024 - Actuel</span>
+                            <p>push_swap, minitalk - Algorithmes et communication inter-processus.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Heures de code</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Projets validés</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Motivation</div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Milestone</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Projets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Heures de code</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Réussite</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Contact -->
+    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">
-                <i class="fas fa-envelope"></i>
-                Contact
-            </h2>
+            <h2 class="section-title">Restons en Contact</h2>
+            <p class="section-subtitle">Ouvert aux opportunités et collaborations</p>
+            
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Discutons de vos projets</h3>
-                    <p>Je suis ouvert aux opportunités de stage, projets collaboratifs et discussions techniques.</p>
-                    
-                    <div class="contact-links">
-                        <a href="mailto:votre.email@example.com" class="contact-link">
+                    <h3>Contactez-moi</h3>
+                    <div class="contact-methods">
+                        <a href="mailto:c.andriam@student.42antananarivo.mg" class="contact-method">
                             <i class="fas fa-envelope"></i>
-                            <span>votre.email@example.com</span>
+                            <div>
+                                <span class="method-label">Email</span>
+                                <span class="method-value">c.andriam@student.42antananarivo.mg</span>
+                            </div>
                         </a>
-                        <a href="https://github.com/c-andriam" class="contact-link" target="_blank">
+                        <a href="https://github.com/c-andriam" target="_blank" class="contact-method">
                             <i class="fab fa-github"></i>
-                            <span>github.com/c-andriam</span>
+                            <div>
+                                <span class="method-label">GitHub</span>
+                                <span class="method-value">@c-andriam</span>
+                            </div>
                         </a>
-                        <a href="https://linkedin.com/in/votre-profil" class="contact-link" target="_blank">
+                        <a href="https://linkedin.com/in/c-andriam" target="_blank" class="contact-method">
                             <i class="fab fa-linkedin"></i>
-                            <span>LinkedIn</span>
+                            <div>
+                                <span class="method-label">LinkedIn</span>
+                                <span class="method-value">c-andriam</span>
+                            </div>
                         </a>
-                        <a href="assets/cv-c-andriam.pdf" class="contact-link" target="_blank">
-                            <i class="fas fa-file-pdf"></i>
-                            <span>Télécharger CV</span>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/c-andriam" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/c-andriam" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:c.andriam@student.42antananarivo.mg" class="social-link">
+                            <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>
-                
-                <form class="contact-form" id="contact-form">
+
+                <form id="contact-form" class="contact-form">
                     <div class="form-group">
-                        <label for="name">Nom</label>
+                        <label for="name">Nom *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="subject">Sujet</label>
-                        <input type="text" id="subject" name="subject" required>
+                        <input type="text" id="subject" name="subject">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">Message *</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">
@@ -395,21 +515,17 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 c-andriam | École 42 Antananarivo</p>
+                <div class="footer-text">
+                    <p>&copy; 2024 c-andriam. Développé avec ❤️ à l'École 42 Antananarivo</p>
+                </div>
                 <div class="footer-links">
-                    <a href="https://github.com/c-andriam" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/votre-profil" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                    <a href="#home">Retour en haut</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="js/theme-toggle.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>

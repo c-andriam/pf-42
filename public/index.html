@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de c-andriam - Développeur système et logiciel formé à l'école 42 Antananarivo. Spécialisé en C & C++, Unix, algorithmes et développement bas niveau.">
-    <meta name="keywords" content="42, développeur, système, C & C++, Unix, shell, portfolio, candriam, 42 Antananarivo, programmation, algorithmes">
-    <meta name="author" content="candriam">
+    <meta name="description" content="Portfolio de c-andriam - Développeur système et logiciel formé à l'école 42 Antananarivo. Spécialisé en C, Unix, algorithmes et développement bas niveau.">
+    <meta name="keywords" content="42, développeur, système, C, Unix, shell, portfolio, c-andriam, 42 Antananarivo, programmation, algorithmes">
+    <meta name="author" content="c-andriam">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
@@ -160,61 +160,6 @@
                     </div>
                 </div>
 
-                <!-- 42 Network Style Progress -->
-                <div class="network-progress">
-                    <h3>Progression dans le cursus 42</h3>
-                    <div class="network-circles">
-                        <div class="circle completed" data-project="libft">
-                            <span>libft</span>
-                        </div>
-                        <div class="circle completed" data-project="get_next_line">
-                            <span>GNL</span>
-                        </div>
-                        <div class="circle completed" data-project="ft_printf">
-                            <span>printf</span>
-                        </div>
-                        <div class="circle completed" data-project="born2beroot">
-                            <span>Born2beroot</span>
-                        </div>
-                        <div class="circle completed" data-project="push_swap">
-                            <span>push_swap</span>
-                        </div>
-                        <div class="circle completed" data-project="pipex">
-                            <span>pipex</span>
-                        </div>
-                        <div class="circle completed" data-project="fdf">
-                            <span>FdF</span>
-                        </div>
-                        <div class="circle completed" data-project="minishell">
-                            <span>minishell</span>
-                        </div>
-                        <div class="circle completed" data-project="philosophers">
-                            <span>Philosophers</span>
-                        </div>
-                        <div class="circle completed" data-project="minirt">
-                            <span>miniRT</span>
-                        </div>
-                        <div class="circle completed" data-project="netpractice">
-                            <span>NetPractice</span>
-                        </div>
-                        <div class="circle completed" data-project="cpp">
-                            <span>CPP 00-04</span>
-                        </div>
-                        <div class="circle current" data-project="inception">
-                            <span>Inception</span>
-                        </div>
-                        <div class="circle upcoming" data-project="cpp-advanced">
-                            <span>CPP 05-09</span>
-                        </div>
-                        <div class="circle upcoming" data-project="ft_irc">
-                            <span>ft_irc</span>
-                        </div>
-                        <div class="circle upcoming" data-project="ft_transcendence">
-                            <span>ft_transcendence</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Achievements Section -->
                 <div class="achievements">
                     <h3>Achievements & Badges</h3>
@@ -274,126 +219,435 @@
         <section id="projects" class="projects">
             <div class="container">
                 <h2 class="section-title">Projets 42</h2>
-                <p class="section-subtitle">Mes réalisations durant le cursus</p>
+                <p class="section-subtitle">Mon parcours technique à travers le cursus</p>
                 
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="assets/projects/libft.png" alt="Capture d'écran du projet Libft" loading="lazy">
-                            <div class="project-overlay">
-                                <a href="https://github.com/c-andriam/libft" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Voir le code source de Libft sur GitHub">
-                                    <i class="fab fa-github" aria-hidden="true"></i>
-                                </a>
+                <!-- Progression Timeline -->
+                <div class="progression-timeline">
+                    <h3>Progression dans le cursus 42</h3>
+                    <div class="timeline-wrapper">
+                        <div class="timeline-track">
+                            <div class="timeline-progress" style="width: 80%"></div>
+                        </div>
+                        <div class="timeline-milestones">
+                            <div class="milestone completed" data-project="libft">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Libft</span>
                             </div>
+                            <div class="milestone completed" data-project="printf">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Printf</span>
+                            </div>
+                            <div class="milestone completed" data-project="gnl">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">GNL</span>
+                            </div>
+                            <div class="milestone completed" data-project="born2beroot">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Born2beroot</span>
+                            </div>
+                            <div class="milestone completed" data-project="push_swap">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Push_swap</span>
+                            </div>
+                            <div class="milestone completed" data-project="pipex">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Pipex</span>
+                            </div>
+                            <div class="milestone completed" data-project="fdf">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">FdF</span>
+                            </div>
+                            <div class="milestone completed" data-project="philosophers">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Philosophers</span>
+                            </div>
+                            <div class="milestone completed" data-project="minishell">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Minishell</span>
+                            </div>
+                            <div class="milestone completed" data-project="netpractice">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">NetPractice</span>
+                            </div>
+                            <div class="milestone completed" data-project="minirt">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">MiniRT</span>
+                            </div>
+                            <div class="milestone completed" data-project="cpp">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">CPP 00-04</span>
+                            </div>
+                            <div class="milestone current" data-project="inception">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">Inception</span>
+                            </div>
+                            <div class="milestone upcoming" data-project="cpp-advanced">
+                                <div class="milestone-dot"></div>
+                                <span class="milestone-label">CPP 05-09</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progression-stats">
+                        <div class="stat">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Projets validés</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">103.5</span>
+                            <span class="stat-label">Moyenne générale</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5.19</span>
+                            <span class="stat-label">Level actuel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Core Projects (C Programming) -->
+                    <article class="project-card core-project">
+                        <div class="project-header">
+                            <div class="project-category">Core C</div>
+                            <div class="project-status completed">✅ Validé</div>
                         </div>
                         <div class="project-content">
                             <h3>Libft</h3>
-                            <p>Recréation de la librairie standard C avec implémentation de fonctions essentielles (strlen, strcpy, malloc, etc.)</p>
-                            <div class="project-tags">
-                                <span class="tag">C</span>
-                                <span class="tag">Librairie</span>
-                                <span class="tag">Makefile</span>
+                            <p>Recréation de fonctions de la librairie standard C. Base fondamentale pour tous les projets futurs.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag makefile">Makefile</span>
+                                <span class="tech-tag memory">Memory Mgmt</span>
                             </div>
-                            <div class="project-stats">
-                                <span class="stat">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    125/100
-                                </span>
-                                <span class="stat">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                    C
-                                </span>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/libft" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="assets/projects/gnl.png" alt="Capture d'écran du projet Get Next Line" loading="lazy">
-                            <div class="project-overlay">
-                                <a href="https://github.com/c-andriam/get_next_line" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Voir le code source de Get Next Line sur GitHub">
-                                    <i class="fab fa-github" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Get Next Line</h3>
-                            <p>Fonction qui lit un fichier ligne par ligne de manière optimisée avec gestion de buffer statique</p>
-                            <div class="project-tags">
-                                <span class="tag">C</span>
-                                <span class="tag">File handling</span>
-                                <span class="tag">Buffer</span>
-                            </div>
-                            <div class="project-stats">
-                                <span class="stat">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    100/100
-                                </span>
-                                <span class="stat">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                    C
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="assets/projects/printf.png" alt="Capture d'écran du projet ft_printf" loading="lazy">
-                            <div class="project-overlay">
-                                <a href="https://github.com/c-andriam/ft_printf" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Voir le code source de ft_printf sur GitHub">
-                                    <i class="fab fa-github" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                    <article class="project-card core-project">
+                        <div class="project-header">
+                            <div class="project-category">Core C</div>
+                            <div class="project-status completed">✅ Validé</div>
                         </div>
                         <div class="project-content">
                             <h3>ft_printf</h3>
-                            <p>Reproduction de la fonction printf avec gestion des conversions (%d, %s, %c, %x, etc.)</p>
-                            <div class="project-tags">
-                                <span class="tag">C</span>
-                                <span class="tag">Variadic</span>
-                                <span class="tag">Parsing</span>
+                            <p>Reproduction de la fonction printf avec gestion complète des conversions et formats.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag variadic">Variadic</span>
+                                <span class="tech-tag parsing">Parsing</span>
                             </div>
-                            <div class="project-stats">
-                                <span class="stat">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    100/100
-                                </span>
-                                <span class="stat">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                    C
-                                </span>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/ft_printf" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="assets/projects/push_swap.png" alt="Capture d'écran du projet Push Swap" loading="lazy">
-                            <div class="project-overlay">
-                                <a href="https://github.com/c-andriam/push_swap" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Voir le code source de Push Swap sur GitHub">
-                                    <i class="fab fa-github" aria-hidden="true"></i>
-                                </a>
-                            </div>
+                    <article class="project-card core-project">
+                        <div class="project-header">
+                            <div class="project-category">Core C</div>
+                            <div class="project-status completed">✅ Validé</div>
                         </div>
                         <div class="project-content">
-                            <h3>Push Swap</h3>
-                            <p>Algorithme de tri optimisé utilisant deux piles avec un nombre minimal d'opérations</p>
-                            <div class="project-tags">
-                                <span class="tag">C</span>
-                                <span class="tag">Algorithme</span>
-                                <span class="tag">Tri</span>
-                                <span class="tag">Optimisation</span>
+                            <h3>get_next_line</h3>
+                            <p>Lecture ligne par ligne d'un fichier avec gestion optimisée du buffer statique.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag file-io">File I/O</span>
+                                <span class="tech-tag buffer">Buffer</span>
                             </div>
-                            <div class="project-stats">
-                                <span class="stat">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    84/100
-                                </span>
-                                <span class="stat">
-                                    <i class="fas fa-code" aria-hidden="true"></i>
-                                    C
-                                </span>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/get_next_line" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- System Administration -->
+                    <article class="project-card system-project">
+                        <div class="project-header">
+                            <div class="project-category">System Admin</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Born2beroot</h3>
+                            <p>Configuration et sécurisation d'un serveur Debian avec virtualisation et politiques de sécurité.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag linux">Linux</span>
+                                <span class="tech-tag vm">VirtualBox</span>
+                                <span class="tech-tag security">Security</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score outstanding">125/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/Born2beroot" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Algorithms -->
+                    <article class="project-card algo-project">
+                        <div class="project-header">
+                            <div class="project-category">Algorithms</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>push_swap</h3>
+                            <p>Algorithme de tri optimisé avec deux piles et nombre minimal d'opérations.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag algo">Algorithms</span>
+                                <span class="tech-tag optimization">Optimization</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/push_swap" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Unix Programming -->
+                    <article class="project-card unix-project">
+                        <div class="project-header">
+                            <div class="project-category">Unix</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>pipex</h3>
+                            <p>Reproduction du comportement des pipes Unix avec redirection de fichiers.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag unix">Unix</span>
+                                <span class="tech-tag pipes">Pipes</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/pipex" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Graphics -->
+                    <article class="project-card graphics-project">
+                        <div class="project-header">
+                            <div class="project-category">Graphics</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>FdF (Fil de Fer)</h3>
+                            <p>Représentation 3D d'un paysage en fil de fer avec projection isométrique.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag graphics">Graphics</span>
+                                <span class="tech-tag minilibx">MiniLibX</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score outstanding">125/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/FdF" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Concurrency -->
+                    <article class="project-card concurrency-project">
+                        <div class="project-header">
+                            <div class="project-category">Concurrency</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Philosophers</h3>
+                            <p>Simulation du problème des philosophes avec threads et gestion des mutex.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag threads">Threads</span>
+                                <span class="tech-tag mutex">Mutex</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/Philosophers" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Shell -->
+                    <article class="project-card shell-project">
+                        <div class="project-header">
+                            <div class="project-category">Shell</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>minishell</h3>
+                            <p>Reproduction d'un shell Unix complet avec parsing, builtins et gestion des signaux.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag shell">Shell</span>
+                                <span class="tech-tag parsing">Parsing</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/minishell" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Network -->
+                    <article class="project-card network-project">
+                        <div class="project-header">
+                            <div class="project-category">Network</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>NetPractice</h3>
+                            <p>Configuration réseau et routage TCP/IP avec subnetting et adressage.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag network">Network</span>
+                                <span class="tech-tag tcp-ip">TCP/IP</span>
+                                <span class="tech-tag routing">Routing</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/NetPractice" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Ray Tracing -->
+                    <article class="project-card graphics-project">
+                        <div class="project-header">
+                            <div class="project-category">3D Graphics</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>miniRT</h3>
+                            <p>Moteur de ray tracing 3D avec gestion de l'éclairage et des matériaux.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag c">C</span>
+                                <span class="tech-tag raytracing">Ray Tracing</span>
+                                <span class="tech-tag 3d">3D</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/miniRT" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- C++ -->
+                    <article class="project-card cpp-project">
+                        <div class="project-header">
+                            <div class="project-category">C++ OOP</div>
+                            <div class="project-status completed">✅ Validé</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>CPP Modules 00-04</h3>
+                            <p>Introduction à la POO en C++ : classes, héritage, polymorphisme et templates de base.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag cpp">C++</span>
+                                <span class="tech-tag oop">OOP</span>
+                                <span class="tech-tag templates">Templates</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score excellent">100/100</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/cpp-modules" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Current Projects -->
+                    <article class="project-card devops-project in-progress">
+                        <div class="project-header">
+                            <div class="project-category">DevOps</div>
+                            <div class="project-status current">🚧 En cours</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Inception</h3>
+                            <p>Infrastructure containerisée avec Docker : WordPress, MariaDB, Nginx avec certificats SSL.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag docker">Docker</span>
+                                <span class="tech-tag nginx">Nginx</span>
+                                <span class="tech-tag mariadb">MariaDB</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score pending">En cours</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/Inception" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card cpp-project in-progress">
+                        <div class="project-header">
+                            <div class="project-category">C++ Advanced</div>
+                            <div class="project-status current">🚧 En cours</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>CPP Modules 05-09</h3>
+                            <p>C++ avancé : exceptions, cast, templates avancés, STL et concepts modernes.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag cpp">C++</span>
+                                <span class="tech-tag stl">STL</span>
+                                <span class="tech-tag exceptions">Exceptions</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score pending">En cours</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/cpp-advanced" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </article>

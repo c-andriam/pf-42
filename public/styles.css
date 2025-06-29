@@ -165,13 +165,42 @@ body {
     line-height: 1.7;
 }
 
-.hero-quote {
+/*.hero-quote {
     background-color: var(--bg-tertiary);
     padding: 1.5rem;
     border-radius: 8px;
     border-left: 4px solid var(--accent-color);
     margin-bottom: 2rem;
     font-style: italic;
+}*/
+.hero-quote {
+    background-color: var(--bg-tertiary);
+    padding: 1rem 1.5rem; /* Réduire le padding vertical de 1.5rem à 1rem */
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    overflow: hidden;
+    min-height: fit-content; /* S'adapte au contenu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animated-quote {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    background-color: transparent;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ajuster la hauteur de l'image SVG */
+.hero-quote img {
+    max-height: 45px; /* Limiter la hauteur maximale */
+    width: auto;
+    object-fit: contain;
 }
 
 .hero-buttons {
@@ -789,4 +818,28 @@ html {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(88, 166, 255, 0.15);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Version responsive pour différentes tailles d'écran */
+@media (max-width: 768px) {
+    .hero-quote {
+        padding: 0.75rem 1rem; /* Encore moins de padding sur mobile */
+        margin-bottom: 1.5rem;
+    }
+    
+    .animated-quote {
+        max-width: 100%;
+        max-height: 40px; /* Hauteur réduite sur mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-quote {
+        padding: 0.5rem 0.75rem; /* Padding minimal sur très petit écran */
+    }
+    
+    .animated-quote {
+        max-width: 280px;
+        max-height: 35px;
+    }
 }

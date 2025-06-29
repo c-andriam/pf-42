@@ -15,18 +15,18 @@ const CONFIG = {
     NOTIFICATION_DURATION: 3000,
     SCROLL_THRESHOLD: 100,
     TYPING_SPEED: 50,
-    USER_EMAIL: 'c-andriam@student.42antananarivo.mg'
+    USER_EMAIL: 'candriam@student.42antananarivo.mg'
 };
 
 const SKILL_DATA = [
-    { name: 'C/C++', value: 92 },
-    { name: 'Unix/Linux', value: 88 },
-    { name: 'Algorithms', value: 85 },
-    { name: 'Git/GitHub', value: 90 },
-    { name: 'Shell/Bash', value: 82 },
-    { name: 'Memory Mgmt', value: 89 },
-    { name: 'Data Structures', value: 86 },
-    { name: 'Docker', value: 75 }
+    { name: 'C/C++', value: 52 },
+    { name: 'Unix/Linux', value: 58 },
+    { name: 'Algo', value: 55 },
+    { name: 'Git', value: 52 },
+    { name: 'Shell/Bash', value: 52 },
+    { name: 'Memory Mgmt', value: 50 },
+    { name: 'Data Struct.', value: 51 },
+    { name: 'Docker', value: 52 }
 ];
 
 // ===== UTILITIES =====
@@ -828,12 +828,12 @@ class PortfolioApp {
             'text-shadow: 2px 2px 4px rgba(0,0,0,0.5)'
         ].join(';');
 
-        console.log('%c🚀 Portfolio 42 - c-andriam', styles);
+        console.log('%c🚀 Portfolio 42 - candriam', styles);
         console.log(`
 ╔════════════════════════════════════════╗
 ║              Portfolio 42              ║
 ║                                        ║
-║        Développé par: c-andriam        ║
+║        Développé par: candriam         ║
 ║        École: 42 Antananarivo          ║
 ║        Level: 5.19                     ║
 ║                                        ║
@@ -843,7 +843,7 @@ class PortfolioApp {
 💼 Intéressé par mon profil ? Contactez-moi !
 📧 ${CONFIG.USER_EMAIL}
 🔗 https://github.com/c-andriam
-🌐 https://linkedin.com/in/c-andriam
+🌐 www.linkedin.com/in/christiano-daniel-juvence-andriambeloniaina-918865225
 
 Version: 2.0.0 | Build: ${new Date().toISOString()}
         `);

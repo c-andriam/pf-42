@@ -339,7 +339,189 @@ if ('IntersectionObserver' in window) {
     });
 }
 
+// Ajoutez cette fonction à votre script.js existant
 
+// Skills Radar Chart
+function createSkillsRadar() {
+    const canvas = document.getElementById('skillsChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 150;
+    
+    // Données des compétences (0-100)
+    const skills = [
+        { name: 'C Programming', value: 90 },
+        { name: 'Unix/Linux', value: 85 },
+        { name: 'Algorithms', value: 80 },
+        { name: 'Git/GitHub', value: 85 },
+        { name: 'Shell Scripting', value: 75 },
+        { name: 'Memory Management', value: 88 },
+        { name: 'Data Structures', value: 82 },
+        { name: 'Debugging', value: 78 }
+    ];
+    
+    const numSkills = skills.length;
+    const angleStep = (2 * Math.PI) / numSkills;
+    
+    // Couleurs
+    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim();
+    const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--text-accent').trim();
+    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim();
+    
+    // Fonction pour dessiner le radar
+    function drawRadar() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Dessiner les cercles concentriques
+        ctx.strokeStyle = gridColor;
+        ctx.lineWidth = 1;
+        for (let i = 1; i <= 5; i++) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, (radius * i) / 5, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        
+        // Dessiner les axes
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            // Labels
+            const labelX = centerX + Math.cos(angle) * (radius + 20);
+            const labelY = centerY + Math.sin(angle) * (radius + 20);
+            
+            ctx.fillStyle = textColor;
+            ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI"';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(skills[i].name, labelX, labelY);
+        }
+        
+        // Dessiner les données
+        ctx.fillStyle = fillColor + '40'; // 40 = 25% opacity
+        ctx.strokeStyle = fillColor;
+        ctx.lineWidth = 2;
+        
+        ctx.beginPath();
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const value = (skills[i].value / 100) * radius;
+            const x = centerX + Math.cos(angle) * value;
+            const y = centerY + Math.sin(angle) * value;
+            
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Dessiner les points
+        ctx.fillStyle = fillColor;
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const value = (skills[i].value / 100) * radius;
+            const x = centerX + Math.cos(angle) * value;
+            const y = centerY + Math.sin(angle) * value;
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+    }
+    
+    drawRadar();
+    
+    // Redessiner lors du changement de thème
+    window.addEventListener('themechange', drawRadar);
+}
+
+// Animation des achievement cards
+function animateAchievements() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, index * 100);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.achievement-card').forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// Animation des cercles du network
+function animateNetworkCircles() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const circles = entry.target.querySelectorAll('.circle');
+                circles.forEach((circle, index) => {
+                    setTimeout(() => {
+                        circle.classList.add('animate-in');
+                    }, index * 200);
+                });
+            }
+        });
+    });
+    
+    const networkProgress = document.querySelector('.network-progress');
+    if (networkProgress) {
+        observer.observe(networkProgress);
+    }
+}
+
+// Initialiser au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    createSkillsRadar();
+    animateAchievements();
+    animateNetworkCircles();
+});
+
+// CSS pour les animations (ajoutez à votre CSS)
+const animationCSS = `
+.achievement-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.achievement-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.circle {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+}
+
+.circle.animate-in {
+    opacity: 1;
+    transform: scale(1);
+}
+`;
+
+// Ajouter le CSS d'animation
+const style = document.createElement('style');
+style.textContent = animationCSS;
+document.head.appendChild(style);
 
 // Console easter egg
 console.log(`

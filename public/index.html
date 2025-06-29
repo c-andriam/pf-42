@@ -76,7 +76,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!--section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Compétences techniques</h2>
             <p class="section-subtitle">Acquises durant mon parcours à l'école 42</p>
@@ -130,12 +130,154 @@
             <div class="milestone-progress">
                 <h3>Progression 42</h3>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 50%"></div>
+                    <div class="progress-fill" style="width: 83.33%"></div>
                 </div>
-                <p>Milestone 5 / 10 - En cours</p>
+                <p>Milestone 5 / 6 - En cours</p>
             </div>
         </div>
-    </section>
+    </section-->
+	<!-- Skills Section -->
+<section id="skills" class="skills">
+    <div class="container">
+        <h2 class="section-title">Compétences techniques</h2>
+        <p class="section-subtitle">Acquises durant mon parcours à l'école 42</p>
+        
+        <div class="skills-overview">
+            <!-- Radar Chart -->
+            <div class="skills-radar">
+                <canvas id="skillsChart" width="400" height="400"></canvas>
+            </div>
+            
+            <!-- Skills Categories -->
+            <div class="skills-details">
+                <div class="skill-category">
+                    <h3><i class="fas fa-terminal"></i> Système & Shell</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag level-expert">Unix/Linux</span>
+                        <span class="skill-tag level-expert">Bash</span>
+                        <span class="skill-tag level-advanced">Shell scripting</span>
+                        <span class="skill-tag level-advanced">Pipe & Redirection</span>
+                        <span class="skill-tag level-intermediate">Process management</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programmation</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag level-expert">C</span>
+                        <span class="skill-tag level-expert">Pointeurs</span>
+                        <span class="skill-tag level-advanced">Gestion mémoire</span>
+                        <span class="skill-tag level-advanced">malloc/free</span>
+                        <span class="skill-tag level-intermediate">Structures de données</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Outils de développement</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag level-expert">Git</span>
+                        <span class="skill-tag level-advanced">GitHub</span>
+                        <span class="skill-tag level-advanced">Makefile</span>
+                        <span class="skill-tag level-intermediate">GDB</span>
+                        <span class="skill-tag level-intermediate">Valgrind</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-puzzle-piece"></i> Algorithmes</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag level-advanced">Tri</span>
+                        <span class="skill-tag level-advanced">Recherche</span>
+                        <span class="skill-tag level-intermediate">Complexité</span>
+                        <span class="skill-tag level-intermediate">Optimisation</span>
+                        <span class="skill-tag level-advanced">Récursion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 42 Network Style Progress -->
+        <div class="network-progress">
+            <h3>Progression dans le réseau 42</h3>
+            <div class="network-circles">
+                <div class="circle completed">
+                    <span>libft</span>
+                </div>
+                <div class="circle completed">
+                    <span>get_next_line</span>
+                </div>
+                <div class="circle completed">
+                    <span>ft_printf</span>
+                </div>
+                <div class="circle completed">
+                    <span>push_swap</span>
+                </div>
+                <div class="circle current">
+                    <span>minitalk</span>
+                </div>
+                <div class="circle upcoming">
+                    <span>so_long</span>
+                </div>
+                <div class="circle upcoming">
+                    <span>pipex</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="achievements">
+            <h3>Achievements & Badges</h3>
+            <div class="achievements-grid">
+                <div class="achievement-card gold">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h4>Code Explorer 3</h4>
+                    <p>Validated 10 projects</p>
+                </div>
+                
+                <div class="achievement-card silver">
+                    <div class="achievement-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h4>Game Load Champion 1</h4>
+                    <p>Participated in Game Load event</p>
+                </div>
+                
+                <div class="achievement-card bronze">
+                    <div class="achievement-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h4>Sleep is for the weak</h4>
+                    <p>All work and no play makes Jack a dull boy</p>
+                </div>
+                
+                <div class="achievement-card special">
+                    <div class="achievement-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Peer Learning Master</h4>
+                    <p>Helped 50+ fellow students</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Traditional Progress Bar -->
+        <div class="milestone-progress">
+            <h3>Progression 42</h3>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 83.33%"></div>
+                    <div class="progress-text">Milestone 5 / 6</div>
+                </div>
+                <div class="level-indicator">
+                    <span class="current-level">Level 4.2</span>
+                    <span class="next-level">Next: Level 5.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects">

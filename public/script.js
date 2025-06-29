@@ -1,540 +1,925 @@
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const html = document.documentElement;
+/**
+ * Portfolio 42 - c-andriam
+ * JavaScript principal avec fonctionnalités optimisées
+ * Version: 2.0.0
+ * Date: 2025-06-29
+ */
 
-// Check for saved theme preference or default to 'dark'
-const currentTheme = localStorage.getItem('theme') || 'dark';
-html.setAttribute('data-theme', currentTheme);
+'use strict';
 
-// Update theme toggle icon
-function updateThemeIcon(theme) {
-    const icon = themeToggle.querySelector('i');
-    if (theme === 'light') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    }
-}
-
-updateThemeIcon(currentTheme);
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-});
-
-// Mobile Navigation
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.backgroundColor = 'rgba(13, 17, 23, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-        navbar.style.backgroundColor = 'var(--bg-secondary)';
-    }
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+// ===== CONFIGURATION & CONSTANTES =====
+const CONFIG = {
+    THEME_STORAGE_KEY: 'portfolio-theme',
+    DEFAULT_THEME: 'dark',
+    ANIMATION_DURATION: 300,
+    NOTIFICATION_DURATION: 3000,
+    SCROLL_THRESHOLD: 100,
+    TYPING_SPEED: 50,
+    USER_EMAIL: 'c-andriam@student.42antananarivo.mg'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+const SKILL_DATA = [
+    { name: 'C/C++', value: 92 },
+    { name: 'Unix/Linux', value: 88 },
+    { name: 'Algorithms', value: 85 },
+    { name: 'Git/GitHub', value: 90 },
+    { name: 'Shell/Bash', value: 82 },
+    { name: 'Memory Mgmt', value: 89 },
+    { name: 'Data Structures', value: 86 },
+    { name: 'Docker', value: 75 }
+];
+
+// ===== UTILITIES =====
+const Utils = {
+    /**
+     * Debounce function to limit function calls
+     */
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
+    /**
+     * Throttle function to limit function calls
+     */
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    },
+
+    /**
+     * Check if element is in viewport
+     */
+    isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    },
+
+    /**
+     * Safely get computed style property
+     */
+    getCSSVariable(property) {
+        return getComputedStyle(document.documentElement)
+            .getPropertyValue(property)
+            .trim();
+    }
+};
+
+// ===== THEME MANAGER =====
+class ThemeManager {
+    constructor() {
+        this.themeToggle = document.getElementById('theme-toggle');
+        this.html = document.documentElement;
+        this.currentTheme = localStorage.getItem(CONFIG.THEME_STORAGE_KEY) || CONFIG.DEFAULT_THEME;
+        
+        this.init();
+    }
+
+    init() {
+        this.setTheme(this.currentTheme);
+        this.updateIcon(this.currentTheme);
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+            
+            // Keyboard support
+            this.themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.toggleTheme();
+                }
+            });
         }
-    });
-}, observerOptions);
+    }
 
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
-});
+    setTheme(theme) {
+        this.html.setAttribute('data-theme', theme);
+        localStorage.setItem(CONFIG.THEME_STORAGE_KEY, theme);
+        this.currentTheme = theme;
+        
+        // Dispatch custom event for other components
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    }
 
-// Observe project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    observer.observe(card);
-});
-
-// Observe skill categories
-document.querySelectorAll('.skill-category').forEach(category => {
-    observer.observe(category);
-});
-
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        this.setTheme(newTheme);
+        this.updateIcon(newTheme);
         
-        // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-        
-        // Simulate form submission
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Envoi en cours...';
-        submitBtn.disabled = true;
-        
+        // Add visual feedback
+        this.themeToggle.style.transform = 'scale(0.9)';
         setTimeout(() => {
-            // Reset form
-            this.reset();
-            
-            // Show success message
-            showNotification('Message envoyé avec succès !', 'success');
-            
-            // Reset button
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-}
-
-// Notification system
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    `;
-    
-    // Set background color based on type
-    const colors = {
-        success: '#238636',
-        error: '#da3633',
-        warning: '#fb8500',
-        info: '#58a6ff'
-    };
-    
-    notification.style.backgroundColor = colors[type] || colors.info;
-    
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Active navigation link highlighting
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-window.addEventListener('scroll', updateActiveNavLink);
-window.addEventListener('load', updateActiveNavLink);
-
-// Add CSS for active nav link
-const style = document.createElement('style');
-style.textContent = `
-    .nav-link.active {
-        color: var(--text-accent) !important;
-        font-weight: 600;
+            this.themeToggle.style.transform = 'scale(1)';
+        }, 150);
     }
-`;
-document.head.appendChild(style);
 
-// Typing effect for hero title
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
+    updateIcon(theme) {
+        if (!this.themeToggle) return;
+        
+        const icon = this.themeToggle.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
         }
     }
-    
-    type();
 }
 
-// Initialize typing effect when page loads
-window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-text h1');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 50);
+// ===== NAVIGATION MANAGER =====
+class NavigationManager {
+    constructor() {
+        this.navbar = document.querySelector('.navbar');
+        this.hamburger = document.querySelector('.hamburger');
+        this.navMenu = document.querySelector('.nav-menu');
+        this.navLinks = document.querySelectorAll('.nav-link');
+        this.sections = document.querySelectorAll('section');
+        
+        this.init();
     }
-});
 
-// Skills animation counter
-function animateSkillBars() {
-    const progressBars = document.querySelectorAll('.progress-fill');
-    
-    progressBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0%';
-        
-        setTimeout(() => {
-            bar.style.width = width;
-        }, 500);
-    });
-}
-
-// Trigger skill animation when skills section is visible
-const skillsSection = document.querySelector('.skills');
-if (skillsSection) {
-    const skillsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBars();
-                skillsObserver.disconnect();
-            }
-        });
-    }, observerOptions);
-    
-    skillsObserver.observe(skillsSection);
-}
-
-// Copy email to clipboard
-function copyEmail() {
-    const email = 'c-andriam@student.42antananarivo.mg';
-    navigator.clipboard.writeText(email).then(() => {
-        showNotification('Email copié dans le presse-papiers !', 'success');
-    }).catch(() => {
-        showNotification('Impossible de copier l\'email', 'error');
-    });
-}
-
-// Add click event to email link
-const emailLink = document.querySelector('a[href^="mailto:"]');
-if (emailLink) {
-    emailLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        copyEmail();
-    });
-}
-
-// Add project card hover effects
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-8px)';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-    });
-});
-
-// Gestion de l'image animée
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedQuote = document.querySelector('.animated-quote');
-    
-    if (animatedQuote) {
-        // Ajouter un indicateur de chargement
-        animatedQuote.addEventListener('load', function() {
-            this.style.opacity = '1';
-        });
-        
-        // Gérer les erreurs de chargement
-        animatedQuote.addEventListener('error', function() {
-            const fallbackQuote = this.nextElementSibling;
-            if (fallbackQuote && fallbackQuote.classList.contains('fallback-quote')) {
-                this.style.display = 'none';
-                fallbackQuote.style.display = 'block';
-            }
-        });
-        
-        // Style initial
-        animatedQuote.style.opacity = '0';
-        animatedQuote.style.transition = 'opacity 0.3s ease';
+    init() {
+        this.bindEvents();
+        this.setupIntersectionObserver();
+        this.updateActiveLink();
     }
-});
 
-// Lazy loading for images
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
+    bindEvents() {
+        // Mobile menu toggle
+        if (this.hamburger && this.navMenu) {
+            this.hamburger.addEventListener('click', () => this.toggleMobileMenu());
+        }
+
+        // Close mobile menu on link click
+        this.navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                this.handleLinkClick(e);
+                this.closeMobileMenu();
+            });
         });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
 
-// Ajoutez cette fonction à votre script.js existant
+        // Scroll effects
+        window.addEventListener('scroll', Utils.throttle(() => {
+            this.handleScroll();
+            this.updateActiveLink();
+        }, 16)); // ~60fps
 
-// Skills Radar Chart
-function createSkillsRadar() {
-    const canvas = document.getElementById('skillsChart');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 150;
-    
-    // Données des compétences (0-100)
-    const skills = [
-        { name: 'C Programming', value: 90 },
-        { name: 'Unix/Linux', value: 85 },
-        { name: 'Algorithms', value: 80 },
-        { name: 'Git/GitHub', value: 85 },
-        { name: 'Shell Scripting', value: 75 },
-        { name: 'Memory Management', value: 88 },
-        { name: 'Data Structures', value: 82 },
-        { name: 'Debugging', value: 78 }
-    ];
-    
-    const numSkills = skills.length;
-    const angleStep = (2 * Math.PI) / numSkills;
-    
-    // Couleurs
-    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--border-color').trim();
-    const fillColor = getComputedStyle(document.documentElement).getPropertyValue('--text-accent').trim();
-    const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim();
-    
-    // Fonction pour dessiner le radar
-    function drawRadar() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Dessiner les cercles concentriques
-        ctx.strokeStyle = gridColor;
-        ctx.lineWidth = 1;
-        for (let i = 1; i <= 5; i++) {
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, (radius * i) / 5, 0, 2 * Math.PI);
-            ctx.stroke();
-        }
-        
-        // Dessiner les axes
-        for (let i = 0; i < numSkills; i++) {
-            const angle = i * angleStep - Math.PI / 2;
-            const x = centerX + Math.cos(angle) * radius;
-            const y = centerY + Math.sin(angle) * radius;
-            
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            
-            // Labels
-            const labelX = centerX + Math.cos(angle) * (radius + 20);
-            const labelY = centerY + Math.sin(angle) * (radius + 20);
-            
-            ctx.fillStyle = textColor;
-            ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI"';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(skills[i].name, labelX, labelY);
-        }
-        
-        // Dessiner les données
-        ctx.fillStyle = fillColor + '40'; // 40 = 25% opacity
-        ctx.strokeStyle = fillColor;
-        ctx.lineWidth = 2;
-        
-        ctx.beginPath();
-        for (let i = 0; i < numSkills; i++) {
-            const angle = i * angleStep - Math.PI / 2;
-            const value = (skills[i].value / 100) * radius;
-            const x = centerX + Math.cos(angle) * value;
-            const y = centerY + Math.sin(angle) * value;
-            
-            if (i === 0) {
-                ctx.moveTo(x, y);
-            } else {
-                ctx.lineTo(x, y);
+        // Handle resize
+        window.addEventListener('resize', Utils.debounce(() => {
+            if (window.innerWidth > 768) {
+                this.closeMobileMenu();
             }
-        }
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        
-        // Dessiner les points
-        ctx.fillStyle = fillColor;
-        for (let i = 0; i < numSkills; i++) {
-            const angle = i * angleStep - Math.PI / 2;
-            const value = (skills[i].value / 100) * radius;
-            const x = centerX + Math.cos(angle) * value;
-            const y = centerY + Math.sin(angle) * value;
-            
-            ctx.beginPath();
-            ctx.arc(x, y, 4, 0, 2 * Math.PI);
-            ctx.fill();
-        }
+        }, 250));
     }
-    
-    drawRadar();
-    
-    // Redessiner lors du changement de thème
-    window.addEventListener('themechange', drawRadar);
-}
 
-// Animation des achievement cards
-function animateAchievements() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, index * 100);
-            }
-        });
-    });
-    
-    document.querySelectorAll('.achievement-card').forEach(card => {
-        observer.observe(card);
-    });
-}
+    toggleMobileMenu() {
+        const isExpanded = this.hamburger.getAttribute('aria-expanded') === 'true';
+        
+        this.hamburger.setAttribute('aria-expanded', !isExpanded);
+        this.navMenu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
+    }
 
-// Animation des cercles du network
-function animateNetworkCircles() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const circles = entry.target.querySelectorAll('.circle');
-                circles.forEach((circle, index) => {
-                    setTimeout(() => {
-                        circle.classList.add('animate-in');
-                    }, index * 200);
+    closeMobileMenu() {
+        this.hamburger.setAttribute('aria-expanded', 'false');
+        this.navMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    handleLinkClick(e) {
+        const href = e.target.getAttribute('href');
+        
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            
+            if (target) {
+                const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
                 });
             }
+        }
+    }
+
+    handleScroll() {
+        if (!this.navbar) return;
+        
+        const scrolled = window.scrollY > CONFIG.SCROLL_THRESHOLD;
+        
+        if (scrolled) {
+            this.navbar.style.backgroundColor = 'rgba(22, 27, 34, 0.95)';
+            this.navbar.style.backdropFilter = 'blur(10px)';
+            this.navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+        } else {
+            this.navbar.style.backgroundColor = 'rgba(22, 27, 34, 0.95)';
+            this.navbar.style.backdropFilter = 'blur(10px)';
+            this.navbar.style.boxShadow = 'none';
+        }
+    }
+
+    setupIntersectionObserver() {
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-80px 0px -50% 0px'
+        };
+
+        this.sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.setActiveLink(entry.target.id);
+                }
+            });
+        }, observerOptions);
+
+        this.sections.forEach(section => {
+            this.sectionObserver.observe(section);
         });
-    });
-    
-    const networkProgress = document.querySelector('.network-progress');
-    if (networkProgress) {
-        observer.observe(networkProgress);
+    }
+
+    updateActiveLink() {
+        // Fallback method for active link detection
+        const fromTop = window.scrollY + 100;
+        let currentSection = '';
+
+        this.sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (fromTop >= sectionTop && fromTop < sectionTop + sectionHeight) {
+                currentSection = section.id;
+            }
+        });
+
+        if (currentSection) {
+            this.setActiveLink(currentSection);
+        }
+    }
+
+    setActiveLink(sectionId) {
+        this.navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+            }
+        });
     }
 }
 
-// Initialiser au chargement
-document.addEventListener('DOMContentLoaded', function() {
-    createSkillsRadar();
-    animateAchievements();
-    animateNetworkCircles();
-});
+// ===== SKILLS RADAR CHART =====
+class SkillsRadar {
+    constructor(canvasId, skillData) {
+        this.canvas = document.getElementById(canvasId);
+        this.skillData = skillData;
+        
+        if (this.canvas) {
+            this.ctx = this.canvas.getContext('2d');
+            this.centerX = this.canvas.width / 2;
+            this.centerY = this.canvas.height / 2;
+            this.radius = Math.min(this.canvas.width, this.canvas.height) / 2 - 60;
+            
+            this.init();
+        }
+    }
 
-// CSS pour les animations (ajoutez à votre CSS)
-const animationCSS = `
-.achievement-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+    init() {
+        this.draw();
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        window.addEventListener('themechange', () => this.draw());
+        window.addEventListener('resize', Utils.debounce(() => this.handleResize(), 250));
+    }
+
+    handleResize() {
+        const container = this.canvas.parentElement;
+        const containerWidth = container.offsetWidth;
+        const size = Math.min(containerWidth - 40, 400);
+        
+        this.canvas.width = size;
+        this.canvas.height = size;
+        this.centerX = size / 2;
+        this.centerY = size / 2;
+        this.radius = size / 2 - 60;
+        
+        this.draw();
+    }
+
+    draw() {
+        if (!this.ctx) return;
+
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        const gridColor = Utils.getCSSVariable('--border-color');
+        const fillColor = Utils.getCSSVariable('--text-accent');
+        const textColor = Utils.getCSSVariable('--text-primary');
+        
+        this.drawGrid(gridColor);
+        this.drawAxes(gridColor);
+        this.drawData(fillColor);
+        this.drawLabels(textColor);
+    }
+
+    drawGrid(color) {
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 1;
+        this.ctx.setLineDash([2, 2]);
+        
+        // Draw concentric circles
+        for (let i = 1; i <= 5; i++) {
+            this.ctx.beginPath();
+            this.ctx.arc(this.centerX, this.centerY, (this.radius * i) / 5, 0, 2 * Math.PI);
+            this.ctx.stroke();
+        }
+        
+        this.ctx.setLineDash([]);
+    }
+
+    drawAxes(color) {
+        const numSkills = this.skillData.length;
+        const angleStep = (2 * Math.PI) / numSkills;
+        
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 1;
+        
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const x = this.centerX + Math.cos(angle) * this.radius;
+            const y = this.centerY + Math.sin(angle) * this.radius;
+            
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.centerX, this.centerY);
+            this.ctx.lineTo(x, y);
+            this.ctx.stroke();
+        }
+    }
+
+    drawData(color) {
+        const numSkills = this.skillData.length;
+        const angleStep = (2 * Math.PI) / numSkills;
+        
+        // Fill area
+        this.ctx.fillStyle = color + '30'; // 30 for transparency
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 2;
+        
+        this.ctx.beginPath();
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const value = (this.skillData[i].value / 100) * this.radius;
+            const x = this.centerX + Math.cos(angle) * value;
+            const y = this.centerY + Math.sin(angle) * value;
+            
+            if (i === 0) {
+                this.ctx.moveTo(x, y);
+            } else {
+                this.ctx.lineTo(x, y);
+            }
+        }
+        this.ctx.closePath();
+        this.ctx.fill();
+        this.ctx.stroke();
+        
+        // Draw points
+        this.ctx.fillStyle = color;
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const value = (this.skillData[i].value / 100) * this.radius;
+            const x = this.centerX + Math.cos(angle) * value;
+            const y = this.centerY + Math.sin(angle) * value;
+            
+            this.ctx.beginPath();
+            this.ctx.arc(x, y, 4, 0, 2 * Math.PI);
+            this.ctx.fill();
+        }
+    }
+
+    drawLabels(color) {
+        const numSkills = this.skillData.length;
+        const angleStep = (2 * Math.PI) / numSkills;
+        
+        this.ctx.fillStyle = color;
+        this.ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        
+        for (let i = 0; i < numSkills; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const labelRadius = this.radius + 25;
+            const x = this.centerX + Math.cos(angle) * labelRadius;
+            const y = this.centerY + Math.sin(angle) * labelRadius;
+            
+            // Adjust text alignment based on position
+            if (x < this.centerX - 10) {
+                this.ctx.textAlign = 'right';
+            } else if (x > this.centerX + 10) {
+                this.ctx.textAlign = 'left';
+            } else {
+                this.ctx.textAlign = 'center';
+            }
+            
+            this.ctx.fillText(this.skillData[i].name, x, y);
+        }
+    }
 }
 
-.achievement-card.animate-in {
+// ===== ANIMATION MANAGER =====
+class AnimationManager {
+    constructor() {
+        this.observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        this.init();
+    }
+
+    init() {
+        this.setupIntersectionObserver();
+        this.setupProgressBarAnimation();
+        this.setupTypingEffect();
+    }
+
+    setupIntersectionObserver() {
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('fade-in');
+                    }, index * 100);
+                }
+            });
+        }, this.observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('section, .project-card, .skill-category, .achievement-card').forEach(el => {
+            this.observer.observe(el);
+        });
+    }
+
+    setupProgressBarAnimation() {
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateProgressBars();
+                    progressObserver.disconnect();
+                }
+            });
+        }, this.observerOptions);
+
+        const skillsSection = document.querySelector('.skills');
+        if (skillsSection) {
+            progressObserver.observe(skillsSection);
+        }
+    }
+
+    animateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-fill');
+        
+        progressBars.forEach(bar => {
+            const targetWidth = bar.style.width;
+            bar.style.width = '0%';
+            
+            setTimeout(() => {
+                bar.style.width = targetWidth;
+            }, 500);
+        });
+    }
+
+    setupTypingEffect() {
+        const heroTitle = document.querySelector('.hero-text h1');
+        if (heroTitle) {
+            const originalText = heroTitle.textContent;
+            this.typeWriter(heroTitle, originalText, CONFIG.TYPING_SPEED);
+        }
+    }
+
+    typeWriter(element, text, speed = 100) {
+        let i = 0;
+        element.textContent = '';
+        
+        const type = () => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            }
+        };
+        
+        type();
+    }
+}
+
+// ===== NOTIFICATION SYSTEM =====
+class NotificationManager {
+    constructor() {
+        this.container = this.createContainer();
+    }
+
+    createContainer() {
+        const container = document.createElement('div');
+        container.className = 'notification-container';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            pointer-events: none;
+        `;
+        document.body.appendChild(container);
+        return container;
+    }
+
+    show(message, type = 'info', duration = CONFIG.NOTIFICATION_DURATION) {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        
+        const colors = {
+            success: '#238636',
+            error: '#da3633',
+            warning: '#fb8500',
+            info: '#58a6ff'
+        };
+        
+        notification.style.cssText = `
+            background-color: ${colors[type] || colors.info};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+            font-weight: 500;
+            font-size: 0.9rem;
+            max-width: 300px;
+            word-wrap: break-word;
+        `;
+        
+        this.container.appendChild(notification);
+        
+        // Animate in
+        requestAnimationFrame(() => {
+            notification.style.transform = 'translateX(0)';
+        });
+        
+        // Auto remove
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    this.container.removeChild(notification);
+                }
+            }, 300);
+        }, duration);
+        
+        return notification;
+    }
+}
+
+// ===== CONTACT FORM MANAGER =====
+class ContactFormManager {
+    constructor() {
+        this.form = document.getElementById('contactForm');
+        this.notificationManager = new NotificationManager();
+        
+        if (this.form) {
+            this.init();
+        }
+    }
+
+    init() {
+        this.bindEvents();
+        this.setupValidation();
+    }
+
+    bindEvents() {
+        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        
+        // Real-time validation
+        const inputs = this.form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => this.validateField(input));
+            input.addEventListener('input', () => this.clearError(input));
+        });
+    }
+
+    setupValidation() {
+        this.validators = {
+            name: (value) => value.trim().length >= 2,
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            subject: (value) => value.trim().length >= 3,
+            message: (value) => value.trim().length >= 10
+        };
+    }
+
+    validateField(field) {
+        const validator = this.validators[field.name];
+        if (!validator) return true;
+        
+        const isValid = validator(field.value);
+        const errorElement = document.getElementById(`${field.name}-error`);
+        
+        if (!isValid) {
+            field.classList.add('error');
+            if (errorElement) {
+                errorElement.textContent = this.getErrorMessage(field.name);
+            }
+        } else {
+            field.classList.remove('error');
+            if (errorElement) {
+                errorElement.textContent = '';
+            }
+        }
+        
+        return isValid;
+    }
+
+    clearError(field) {
+        field.classList.remove('error');
+        const errorElement = document.getElementById(`${field.name}-error`);
+        if (errorElement) {
+            errorElement.textContent = '';
+        }
+    }
+
+    getErrorMessage(fieldName) {
+        const messages = {
+            name: 'Le nom doit contenir au moins 2 caractères',
+            email: 'Veuillez entrer un email valide',
+            subject: 'Le sujet doit contenir au moins 3 caractères',
+            message: 'Le message doit contenir au moins 10 caractères'
+        };
+        return messages[fieldName] || 'Champ invalide';
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        // Validate all fields
+        const inputs = this.form.querySelectorAll('input, textarea');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (!this.validateField(input)) {
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) {
+            this.notificationManager.show('Veuillez corriger les erreurs dans le formulaire', 'error');
+            return;
+        }
+        
+        // Simulate form submission
+        const submitBtn = this.form.querySelector('button[type="submit"]');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoading = submitBtn.querySelector('.btn-loading');
+        
+        submitBtn.disabled = true;
+        btnText.hidden = true;
+        btnLoading.hidden = false;
+        
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            this.form.reset();
+            this.notificationManager.show('Message envoyé avec succès !', 'success');
+        } catch (error) {
+            this.notificationManager.show('Erreur lors de l\'envoi du message', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            btnText.hidden = false;
+            btnLoading.hidden = true;
+        }
+    }
+}
+
+// ===== UTILITY FUNCTIONS =====
+function copyToClipboard(text) {
+    const notificationManager = new NotificationManager();
+    
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            notificationManager.show('Email copié dans le presse-papiers !', 'success');
+        }).catch(() => {
+            notificationManager.show('Impossible de copier l\'email', 'error');
+        });
+    } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            notificationManager.show('Email copié dans le presse-papiers !', 'success');
+        } catch (err) {
+            notificationManager.show('Impossible de copier l\'email', 'error');
+        } finally {
+            textArea.remove();
+        }
+    }
+}
+
+// ===== INITIALIZATION =====
+class PortfolioApp {
+    constructor() {
+        this.components = {};
+        this.init();
+    }
+
+    init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.initializeComponents());
+        } else {
+            this.initializeComponents();
+        }
+    }
+
+    initializeComponents() {
+        try {
+            // Initialize core components
+            this.components.themeManager = new ThemeManager();
+            this.components.navigationManager = new NavigationManager();
+            this.components.animationManager = new AnimationManager();
+            this.components.contactFormManager = new ContactFormManager();
+            this.components.skillsRadar = new SkillsRadar('skillsChart', SKILL_DATA);
+            
+            // Setup additional features
+            this.setupEmailCopy();
+            this.setupLazyLoading();
+            this.logWelcomeMessage();
+            
+        } catch (error) {
+            console.error('Error initializing portfolio:', error);
+        }
+    }
+
+    setupEmailCopy() {
+        const emailLink = document.querySelector('a[href^="mailto:"]');
+        if (emailLink) {
+            emailLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                copyToClipboard(CONFIG.USER_EMAIL);
+            });
+        }
+    }
+
+    setupLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    }
+
+    logWelcomeMessage() {
+        const styles = [
+            'color: #58a6ff',
+            'font-size: 16px',
+            'font-weight: bold',
+            'text-shadow: 2px 2px 4px rgba(0,0,0,0.5)'
+        ].join(';');
+
+        console.log('%c🚀 Portfolio 42 - c-andriam', styles);
+        console.log(`
+╔════════════════════════════════════════╗
+║              Portfolio 42              ║
+║                                        ║
+║        Développé par: c-andriam        ║
+║        École: 42 Antananarivo          ║
+║        Level: 5.19                     ║
+║                                        ║
+║    "Code is poetry written in logic"   ║
+╚════════════════════════════════════════╝
+
+💼 Intéressé par mon profil ? Contactez-moi !
+📧 ${CONFIG.USER_EMAIL}
+🔗 https://github.com/c-andriam
+🌐 https://linkedin.com/in/c-andriam
+
+Version: 2.0.0 | Build: ${new Date().toISOString()}
+        `);
+    }
+}
+
+// ===== CSS ANIMATIONS =====
+const additionalCSS = `
+.fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.achievement-card,
+.circle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.achievement-card.animate-in,
+.circle.animate-in {
     opacity: 1;
     transform: translateY(0);
 }
 
-.circle {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.5s ease;
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 2px rgba(218, 54, 51, 0.2);
 }
 
-.circle.animate-in {
-    opacity: 1;
-    transform: scale(1);
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: block;
+    min-height: 1.2em;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #ffffff;
+        --text-secondary: #cccccc;
+    }
 }
 `;
 
-// Ajouter le CSS d'animation
-const style = document.createElement('style');
-style.textContent = animationCSS;
-document.head.appendChild(style);
+// Inject additional CSS
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalCSS;
+document.head.appendChild(styleSheet);
 
-// Console easter egg
-console.log(`
-    ╔══════════════════════════════════════╗
-    ║           🚀 Portfolio 42            ║
-    ║                                      ║
-    ║      Développé par: c-andriam        ║
-    ║      École: 42 Antananarivo          ║
-    ║      Milestone: 5                    ║
-    ║                                      ║
-    ║  "Code is poetry written in logic"   ║
-    ╚══════════════════════════════════════╝
-    
-    Interested in hiring me? Let's talk!
-    📧 c-andriam@student.42antananarivo.mg
-`);
+// Initialize the application
+const portfolioApp = new PortfolioApp();
+
+// Export for debugging purposes
+window.PortfolioApp = PortfolioApp;
+window.portfolioApp = portfolioApp;

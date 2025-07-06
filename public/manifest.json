@@ -1,0 +1,52 @@
+{
+  "name": "Portfolio - c-andriam",
+  "short_name": "c-andriam",
+  "description": "Portfolio professionnel de c-andriam - Développeur système et logiciel formé à l'école 42 Antananarivo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#58a6ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/profile.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Portfolio homepage showing projects and skills"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Voir mes projets",
+      "short_name": "Projets",
+      "description": "Accéder directement à la section projets",
+      "url": "/#projects",
+      "icons": [{ "src": "assets/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Me contacter",
+      "short_name": "Contact",
+      "description": "Accéder au formulaire de contact",
+      "url": "/#contact",
+      "icons": [{ "src": "assets/logo.png", "sizes": "96x96" }]
+    }
+  ]
+}

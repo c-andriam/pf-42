@@ -917,8 +917,110 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalCSS;
 document.head.appendChild(styleSheet);
 
+// ===== BACK TO TOP FUNCTIONALITY =====
+class BackToTopManager {
+    constructor() {
+        this.button = document.getElementById('back-to-top');
+        this.init();
+    }
+
+    init() {
+        if (!this.button) return;
+
+        this.bindEvents();
+        this.handleScroll(); // Check initial state
+    }
+
+    bindEvents() {
+        // Show/hide on scroll
+        window.addEventListener('scroll', Utils.throttle(() => {
+            this.handleScroll();
+        }, 100));
+
+        // Click event
+        this.button.addEventListener('click', () => {
+            this.scrollToTop();
+        });
+
+        // Keyboard support
+        this.button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.scrollToTop();
+            }
+        });
+    }
+
+    handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const showThreshold = 300; // Show button after 300px scroll
+
+        if (scrollTop > showThreshold) {
+            this.button.classList.add('visible');
+        } else {
+            this.button.classList.remove('visible');
+        }
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // Focus management for accessibility
+        setTimeout(() => {
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) {
+                skipLink.focus();
+            }
+        }, 300);
+    }
+}
+
+// ===== LOADING SCREEN MANAGER =====
+class LoadingManager {
+    constructor() {
+        this.loadingScreen = document.getElementById('loading-screen');
+        this.minLoadTime = 1000; // Minimum loading time for better UX
+        this.startTime = Date.now();
+        this.init();
+    }
+
+    init() {
+        if (!this.loadingScreen) return;
+        
+        // Hide loading screen when everything is loaded
+        if (document.readyState === 'complete') {
+            this.hideLoadingScreen();
+        } else {
+            window.addEventListener('load', () => {
+                this.hideLoadingScreen();
+            });
+        }
+    }
+
+    hideLoadingScreen() {
+        const elapsedTime = Date.now() - this.startTime;
+        const remainingTime = Math.max(0, this.minLoadTime - elapsedTime);
+
+        setTimeout(() => {
+            this.loadingScreen.classList.add('fade-out');
+            
+            // Remove from DOM after animation completes
+            setTimeout(() => {
+                if (this.loadingScreen.parentNode) {
+                    this.loadingScreen.remove();
+                }
+            }, 500);
+        }, remainingTime);
+    }
+}
+
 // Initialize the application
+const loadingManager = new LoadingManager();
 const portfolioApp = new PortfolioApp();
+const backToTopManager = new BackToTopManager();
 
 // Export for debugging purposes
 window.PortfolioApp = PortfolioApp;

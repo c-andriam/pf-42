@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Main sitemap
+Sitemap: https://c-andriam-portfolio.vercel.app/sitemap.xml
+
+# Disallow common directories we don't want indexed
+Disallow: /node_modules/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: *.tmp
+Disallow: *.log
+
+# Allow access to important resources
+Allow: /assets/
+Allow: /styles.css
+Allow: /script.js
+Allow: /favicon.ico

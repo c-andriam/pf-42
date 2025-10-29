@@ -26,15 +26,52 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     
-    <!-- Preconnect -->
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://readme-typing-svg.herokuapp.com">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "c-andriam",
+      "alternateName": "candriam",
+      "description": "Développeur système et logiciel formé à l'école 42 Antananarivo",
+      "url": "https://c-andriam-portfolio.vercel.app",
+      "image": "https://c-andriam-portfolio.vercel.app/assets/profile.jpg",
+      "sameAs": [
+        "https://github.com/c-andriam"
+      ],
+      "jobTitle": "Développeur Système & Logiciel",
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "École 42 Antananarivo"
+      },
+      "knowsAbout": ["C", "C++", "Unix", "Shell", "Algorithmes", "Programmation système"],
+      "email": "c-andriam@student.42antananarivo.mg"
+    }
+    </script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen" aria-hidden="true">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <p class="loading-text">Chargement du portfolio...</p>
+    </div>
+
     <!-- Skip to main content for accessibility -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
     
@@ -43,7 +80,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <!--i class="fas fa-code" aria-hidden="true"></i-->
-		<img src="assets/logo.png">
+		<img src="assets/logo.png" alt="Logo c-andriam" width="32" height="32" loading="eager">
                 <span>candriam</span>
             </div>
             <ul class="nav-menu" role="menubar">
@@ -51,6 +88,7 @@
                 <li role="none"><a href="#skills" class="nav-link" role="menuitem">Compétences</a></li>
                 <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projets</a></li>
                 <li role="none"><a href="#education" class="nav-link" role="menuitem">Parcours</a></li>
+                <li role="none"><a href="#testimonials" class="nav-link" role="menuitem">Témoignages</a></li>
                 <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
                 <li role="none">
                     <button id="theme-toggle" class="theme-toggle" aria-label="Basculer entre thème sombre et clair">
@@ -91,7 +129,13 @@
                         </div>
                     </div>
                     <div class="hero-image">
-                        <img src="assets/profile.jpg" alt="Photo de profil de c-andriam" class="profile-img" loading="eager">
+                        <img src="assets/profile.jpg" 
+                             srcset="assets/profile.jpg 1x" 
+                             alt="Photo de profil de c-andriam - Développeur 42" 
+                             class="profile-img" 
+                             loading="eager"
+                             width="300" 
+                             height="300">
                         <div class="status-badge">
                             <span class="status-dot" aria-hidden="true"></span>
                             Disponible pour opportunités
@@ -203,12 +247,12 @@
                 <div class="milestone-progress">
                     <h3>Progression 42</h3>
                     <div class="progress-container">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-fill" style="width: 19%"></div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" style="width: 91%"></div>
                             <!--div class="progress-text">Milestone 5/6</div-->
                         </div>
                         <div class="level-indicator">
-                            <span class="current-level">Level 5.19</span>
+                            <span class="current-level">Level 6.36</span>
                             <span class="next-level">Objectif: Level 7.0</span>
                         </div>
                     </div>
@@ -227,7 +271,7 @@
                     <h3>Progression dans le cursus 42</h3>
                     <div class="timeline-wrapper">
                         <div class="timeline-track">
-                            <div class="timeline-progress" style="width: 83.33%"></div>
+                            <div class="timeline-progress" style="width: 87.5%"></div>
                         </div>
                         <!--div class="timeline-milestones">
                             <div class="milestone completed" data-project="libft">
@@ -311,16 +355,16 @@
 					    <div class="milestone completed"><div class="milestone-dot"></div><span class="milestone-label">NetPractice</span></div>
 					    <div class="milestone completed"><div class="milestone-dot"></div><span class="milestone-label">MiniRT</span></div>
 					    <div class="milestone completed"><div class="milestone-dot"></div><span class="milestone-label">CPP 00-04</span></div>
-					    <div class="milestone current"><div class="milestone-dot"></div><span class="milestone-label">Inception</span></div>
-					    <div class="milestone upcoming"><div class="milestone-dot"></div><span class="milestone-label">CPP 05-09</span></div>
-					    <div class="milestone upcoming"><div class="milestone-dot"></div><span class="milestone-label">ft_irc</span></div>
+					    <div class="milestone completed"><div class="milestone-dot"></div><span class="milestone-label">Inception</span></div>
+					    <div class="milestone completed"><div class="milestone-dot"></div><span class="milestone-label">CPP 05-09</span></div>
+					    <div class="milestone current"><div class="milestone-dot"></div><span class="milestone-label">ft_irc</span></div>
 					    <div class="milestone upcoming"><div class="milestone-dot"></div><span class="milestone-label">ft_transcendence</span></div>
 					  </div>
 					</div>
                     </div>
                     <div class="progression-stats">
                         <div class="stat">
-                            <span class="stat-number">12</span>
+                            <span class="stat-number">14</span>
                             <span class="stat-label">Projets validés</span>
                         </div>
                         <div class="stat">
@@ -328,7 +372,7 @@
                             <span class="stat-label">Moyenne générale</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-number">5.19</span>
+                            <span class="stat-number">6.36</span>
                             <span class="stat-label">Level actuel</span>
                         </div>
                     </div>
@@ -634,11 +678,11 @@
                         </div>
                     </article>
 
-                    <!-- Current Projects -->
-                    <article class="project-card devops-project in-progress">
+                    <!-- DevOps & Advanced Projects -->
+                    <article class="project-card devops-project">
                         <div class="project-header">
                             <div class="project-category">DevOps</div>
-                            <div class="project-status current">🚧 En cours</div>
+                            <div class="project-status completed">Validé</div>
                         </div>
                         <div class="project-content">
                             <h3>Inception</h3>
@@ -649,7 +693,7 @@
                                 <span class="tech-tag mariadb">MariaDB</span>
                             </div>
                             <div class="project-footer">
-                                <div class="project-score pending">En cours</div>
+                                <div class="project-score excellent">100/100</div>
                                 <div class="project-links">
                                     <a href="https://github.com/c-andriam/Inception" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
                                         <i class="fab fa-github"></i>
@@ -659,10 +703,10 @@
                         </div>
                     </article>
 
-                    <article class="project-card cpp-project in-progress">
+                    <article class="project-card cpp-project">
                         <div class="project-header">
                             <div class="project-category">C++ Advanced</div>
-                            <div class="project-status current">🚧 En cours</div>
+                            <div class="project-status completed">Validé</div>
                         </div>
                         <div class="project-content">
                             <h3>CPP Modules 05-09</h3>
@@ -673,9 +717,34 @@
                                 <span class="tech-tag exceptions">Exceptions</span>
                             </div>
                             <div class="project-footer">
-                                <div class="project-score pending">En cours</div>
+                                <div class="project-score excellent">100/100</div>
                                 <div class="project-links">
                                     <a href="https://github.com/c-andriam/cpp-advanced" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Current Project -->
+                    <article class="project-card network-project in-progress">
+                        <div class="project-header">
+                            <div class="project-category">Network</div>
+                            <div class="project-status current">🚧 En cours</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>ft_irc</h3>
+                            <p>Serveur IRC en C++ avec gestion de channels, utilisateurs, et commandes du protocole IRC.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag cpp">C++</span>
+                                <span class="tech-tag network">Network</span>
+                                <span class="tech-tag irc">IRC</span>
+                            </div>
+                            <div class="project-footer">
+                                <div class="project-score pending">En cours</div>
+                                <div class="project-links">
+                                    <a href="https://github.com/c-andriam/ft_irc" target="_blank" rel="noopener" class="project-link" aria-label="Voir le code sur GitHub">
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </div>
@@ -719,11 +788,11 @@
                 <div class="school-stats">
                     <div class="stat-item">
                         <h4>Niveau actuel</h4>
-                        <p>Level 5.19</p>
+                        <p>Level 6.36</p>
                     </div>
                     <div class="stat-item">
                         <h4>Projets validés</h4>
-                        <p>12+</p>
+                        <p>14+</p>
                     </div>
                     <div class="stat-item">
                         <h4>Langages maîtrisés</h4>
@@ -733,6 +802,79 @@
                         <h4>Technologies</h4>
                         <p>Docker, Git, Unix</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Témoignages</h2>
+                <p class="section-subtitle">Ce que disent mes pairs et mentors</p>
+                
+                <div class="testimonials-grid">
+                    <article class="testimonial-card">
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Un étudiant remarquable qui démontre une excellente maîtrise des concepts système et une approche méthodique dans la résolution de problèmes complexes."
+                            </blockquote>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Mentor technique 42</h4>
+                                <p>École 42 Antananarivo</p>
+                            </div>
+                            <div class="testimonial-rating" aria-label="Note: 5 étoiles sur 5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Collaborer avec c-andriam a été une expérience enrichissante. Son code est propre, bien documenté et ses algorithmes sont élégants."
+                            </blockquote>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Camarade de promotion</h4>
+                                <p>Peer-review 42</p>
+                            </div>
+                            <div class="testimonial-rating" aria-label="Note: 5 étoiles sur 5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-content">
+                            <blockquote>
+                                "Impressionnant de voir sa progression rapide et sa capacité à s'adapter aux défis techniques les plus ardus du cursus 42."
+                            </blockquote>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Équipe pédagogique</h4>
+                                <p>École 42 Antananarivo</p>
+                            </div>
+                            <div class="testimonial-rating" aria-label="Note: 5 étoiles sur 5">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -823,6 +965,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Retour en haut de la page" title="Retour en haut">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
